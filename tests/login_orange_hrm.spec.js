@@ -7,12 +7,10 @@ const Util = require("../utils/util")
 
 test.describe("Orange HRM test", async () => {
     test.beforeEach(async ({}) => {
-        console.log("Before Each executing")
 
     })
 
     test.afterEach(async ({ page }) => {
-        console.log("After Each executing")
         await page.close()
 
     })
