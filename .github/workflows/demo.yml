@@ -20,16 +20,21 @@ jobs:
       - name: Install Project
         uses: actions/checkout@v3 
 
-      - name: Install dependencies
+      - name: Install node dependencies
         uses: actions/setup-node@v3
         with:
           node-version: 18
           
-      - run: npm ci
-      - run: npx playwright install --with-deps
+      - name: Install playwright dependencies
+        run: |
+         npm ci
+         npx playwright install --with-deps
       
       - name: Run playwright test
-        run: npx playwright test --reporter=list
+        run: npx playwright test --reporter=list -g "Add Emplyoee and Verify"
+        
+      - name: check current path
+        run: $ echo "$PWD"
       - uses: actions/upload-artifact@v3
         if: always()
         with:
