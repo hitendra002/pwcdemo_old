@@ -19,18 +19,14 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Install Project
         uses: actions/checkout@v3 
+
+      - name: Install dependencies
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Install dependencies
-        run: npm ci
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
+          
+      - run: npm ci
+      - run: npx playwright install --with-deps
+      
       - name: Run playwright test
-        run: npx playwright test
+        run: npx playwright test --list
