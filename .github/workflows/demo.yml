@@ -28,18 +28,11 @@ jobs:
       - name: Install playwright dependencies
         run: |
          npm ci
-         npx playwright install
+         npx playwright install chromium
       
       - name: Run playwright test
         run: npx playwright test -g "Add Emplyoee and Verify"
         
-      - name: check current path
-        run: |
-          echo "$PWD"
-          pwd
-          dir
-          ls
-          echo "$LS"+"/playwright-report"
       - uses: actions/upload-artifact@v3
         if: always()
         with:
