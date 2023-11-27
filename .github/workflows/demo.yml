@@ -28,7 +28,7 @@ jobs:
       - name: Install playwright dependencies
         run: |
          npm ci
-         npx playwright install-deps chromium
+         npx playwright install
       
       - name: Run playwright test
         run: npx playwright test --reporter=list -g "Add Emplyoee and Verify"
