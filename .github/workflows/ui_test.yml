@@ -1,38 +1,40 @@
-# This is a basic workflow to help you get started with Actions
+# This is a workflow to execute Task
 
 name: Playwright Test
 
-# Controls when the workflow will run
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  UI Test:
-    # The type of runner that the job will run on
+  # This workflow contains a single job called "UI_Test"
+  UI_Test:
+    # The test will execute on windows machine
     runs-on: windows-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    # Sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Checks-out repository "pwcdemo
       - name: Install Project
         uses: actions/checkout@v3 
-
+        
+      # Install Node with version
       - name: Install node dependencies
         uses: actions/setup-node@v3
         with:
           node-version: 18
           
+      # Install Playwright dependencies    
       - name: Install playwright dependencies
         run: |
          npm ci
          npx playwright install chromium
-      
+         
+      # Execute playwright test
       - name: Run playwright test
         run: npx playwright test
-        
+
+      # Upload test report
       - uses: actions/upload-artifact@v3
         if: always()
         with:
