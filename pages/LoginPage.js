@@ -1,5 +1,6 @@
 exports.LoginPage = class LoginPage {
 
+    //locators from Login webpage
     constructor(page) {
         this.page = page
         this.userNameField =  page.locator('[name="username"]')
@@ -8,12 +9,13 @@ exports.LoginPage = class LoginPage {
     }
 
     /**
-     * 
+     * Function used to Login into OrangeHRM
      * @param {string} username Username
      * @param {string} password Password
      */
     async userLogin(username, password){
         await this.page.goto("https://opensource-demo.orangehrmlive.com/index.php")
+        await this.page.reload()
         await this.userNameField.fill(username)
         await this.passwordField.fill(password)
         await this.loginButton.click()

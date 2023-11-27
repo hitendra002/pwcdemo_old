@@ -29,7 +29,7 @@ exports.PimPage = class PimPage {
     }
 
     /**
-     * 
+     * Function to Add emplyoee with personal details
      * @param {string} firstname Employee's First name
      * @param {string} middlename Employee's Middle name
      * @param {string} lastname Employee's Last name
@@ -49,19 +49,36 @@ exports.PimPage = class PimPage {
         await this.page.waitForSelector('[class="orangehrm-edit-employee-image"]')
     }
 
+    /**
+     * Function to Search emplyoee usig ID
+     * @param {string} empID 
+     */
     async searchEmplyoeeWithId(empID){
        await this.emplyoeeIdTextArea.fill(empID)
        await this.searchButton.click()
     }
 
+    /**
+     * Function to verify emplyoee id
+     * @param {string} empID 
+     */
     async verifyEmplyoeeId(empID){
         await expect(this.page.locator('(//div[@class="oxd-table-cell oxd-padding-cell"])[2]')).toHaveText(empID)
     }
 
+    /**
+     * Function to verify emplyoee firstname and Middle name
+     * @param {string} firstname 
+     * @param {string} middlename 
+     */
     async verifyEmplyoeeFirstMiddleName(firstname, middlename=''){
         await expect(this.page.locator('(//div[@class="oxd-table-cell oxd-padding-cell"])[3]')).toHaveText(firstname+' '+middlename)
     }
 
+    /**
+     * Function to verify emplyoee lastname
+     * @param {string} lastname 
+     */
     async verifyEmplyoeeLastName(lastname){
         await expect(this.page.locator('(//div[@class="oxd-table-cell oxd-padding-cell"])[4]')).toHaveText(lastname)
     }
