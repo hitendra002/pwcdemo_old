@@ -31,7 +31,7 @@ jobs:
          npx playwright install
       
       - name: Run playwright test
-        run: npx playwright test --reporter=list -g "Add Emplyoee and Verify"
+        run: npx playwright test -g "Add Emplyoee and Verify"
         
       - name: check current path
         run: |
@@ -44,5 +44,5 @@ jobs:
         if: always()
         with:
           name: playwright-report
-          path: D:/a/pwcdemo/pwcdemo/playwright-report
+          path: playwright-report
           retention-days: 5
