@@ -10,7 +10,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  UI Test:
     # The type of runner that the job will run on
     runs-on: windows-latest
 
@@ -31,7 +31,7 @@ jobs:
          npx playwright install chromium
       
       - name: Run playwright test
-        run: npx playwright test -g "Add Emplyoee and Verify"
+        run: npx playwright test
         
       - uses: actions/upload-artifact@v3
         if: always()
