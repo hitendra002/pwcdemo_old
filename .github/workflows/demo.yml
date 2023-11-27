@@ -36,7 +36,9 @@ jobs:
       - name: check current path
         run: |
           echo "$PWD"
-          echo "$ls"
+          pwd
+          dir
+          ls
           echo "$LS"+"/playwright-report"
       - uses: actions/upload-artifact@v3
         if: always()
