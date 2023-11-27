@@ -18,7 +18,14 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Install Project
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
