@@ -30,6 +30,7 @@ jobs:
           pip install -U pytest
           pip install pytest-html
           pip install requests
+          pip install beautifulsoup4
           
       # Execute api test
       - name: Run pytest
