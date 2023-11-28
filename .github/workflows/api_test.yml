@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  # This workflow contains a single job called "UI_Test"
+  # This workflow contains a single job called "API_Test"
   API_Test:
     # The test will execute on windows machine
     runs-on: windows-latest
@@ -16,28 +16,27 @@ jobs:
     steps:
       # Checks-out repository "pwcdemo
       - name: Install Project
-        uses: actions/checkout@v3 
+        uses: actions/checkout@v3
         
-      # Install Node with version
-      - name: Install node dependencies
-        uses: actions/setup-node@v3
+      # Install Python    
+      - uses: actions/setup-python@v4
         with:
-          node-version: 18
+          python-version: '3.10'
           
-      # Install Playwright dependencies    
-      - name: Install playwright dependencies
+      # Install dependencies
+      - name: Install dependencies
         run: |
-         npm ci
-         npx playwright install chromium
-         
-      # Execute playwright test
-      - name: Run playwright test
-        run: npx playwright test
+          python -m pip install --upgrade pip
+          pip install --default-timeout=100 -r /API_Test/requirement.txt
+          
+      # Execute api test
+      - name: Run pytest
+        run: pytest -v --html=./API_Test/test_reports/report.html
 
       # Upload test report
       - uses: actions/upload-artifact@v3
         if: always()
         with:
-          name: playwright-report
-          path: playwright-report
+          name: API-test-report
+          path: API_Test/test_reports
           retention-days: 5
