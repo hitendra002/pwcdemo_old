@@ -26,6 +26,7 @@ jobs:
       # Install dependencies
       - name: Install dependencies
         run: |
+          pwd
           python -m pip install --upgrade pip
           pip install --default-timeout=100 -r /API_Test/requirement.txt
           
