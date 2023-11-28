@@ -28,7 +28,7 @@ jobs:
         run: |
           pwd
           python -m pip install --upgrade pip
-          pip install --default-timeout=100 -r /API_Test/requirement.txt
+          pip install --default-timeout=100 -r \API_Test\requirement.txt
           
       # Execute api test
       - name: Run pytest
