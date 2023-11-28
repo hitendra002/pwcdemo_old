@@ -34,7 +34,7 @@ jobs:
           
       # Execute api test
       - name: Run pytest
-        run: pytest -v --html=./API_Test/test_reports/report.html
+        run: pytest -v --no-header --html=./API_Test/test_reports/report.html
 
       # Upload test report
       - uses: actions/upload-artifact@v3
