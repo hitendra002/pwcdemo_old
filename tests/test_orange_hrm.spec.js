@@ -30,7 +30,15 @@ test.describe("Orange HRM test", async () => {
         }
         await menu.gotoPIM()
         await pim.gotoAddEmplyoeeTab()
+        console.log("empid", emp.id)
+
         await pim.addEmployee(emp.firstname, emp.lastname, emp.middlename, emp.id)
+
+        const personalDetails = { "nationality": "Swedish", "maritalStatus": "Single", "birthDate": "1992-01-01", "gender": "Male", "bloodType": "B+" }
+        await pim.updatePersonalDetails(personalDetails)
+
+        const contactDetails = { "street1": "Almbyplan 123", "street2": "Orebro", "city":"Orebro", "state": "Orebro", "postalCode": "70217", "country": "Sweden", "mobile": "078000000"}
+        await pim.updateContactDetails(contactDetails)
 
         //Search for Emplyoee
         await menu.gotoPIM()
@@ -41,6 +49,10 @@ test.describe("Orange HRM test", async () => {
         await pim.verifyEmplyoeeId(emp.id)
         await pim.verifyEmplyoeeFirstMiddleName(emp.firstname, emp.middlename)
         await pim.verifyEmplyoeeLastName(emp.lastname)
+
+        await pim.viewEmployeeDetails(emp.id)
+        await pim.verifyPersonalDetails(personalDetails)
+        await pim.verifyContactDetails(contactDetails)
     })
 
     employeeData.forEach((employee, index) => {

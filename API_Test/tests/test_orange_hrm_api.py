@@ -46,15 +46,14 @@ def test_add_employee_and_verify_details():
         assert auth_res.status_code == 200, "Authentication failed"
 
         # Add Emplyoee into HRM
-        emplyoeeData = {
+        employee_data = {
             "firstName": "John",
             "middleName": "wick",
             "lastName": "Smith",
             "empPicture": None,
             "employeeId": api_util.get_employee_id()
         }
-        add_res = session.post("https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/pim/employees",
-                               data=emplyoeeData)
+        add_res = session.post("https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/pim/employees",data=employee_data)
         print("Add emp", add_res)
         assert add_res.status_code == 200, "Add employee failed"
         data = add_res.json()
@@ -68,10 +67,10 @@ def test_add_employee_and_verify_details():
         data = search_emp_res.json()
         print("Search Employee response", data)
         # Assert Employee details
-        assert data["data"]["employeeId"] == emplyoeeData["employeeId"], "Employee id mismatch"
-        assert data["data"]["lastName"] == emplyoeeData["lastName"], "Employee lastname mismatch"
-        assert data["data"]["firstName"] == emplyoeeData["firstName"], "Employee firstname mismatch"
-        assert data["data"]["middleName"] == emplyoeeData["middleName"], "Employee middlename mismatch"
+        assert data["data"]["employeeId"] == employee_data["employeeId"], "Employee id mismatch"
+        assert data["data"]["lastName"] == employee_data["lastName"], "Employee lastname mismatch"
+        assert data["data"]["firstName"] == employee_data["firstName"], "Employee firstname mismatch"
+        assert data["data"]["middleName"] == employee_data["middleName"], "Employee middlename mismatch"
 
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}")
